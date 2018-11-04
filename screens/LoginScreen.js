@@ -1,26 +1,24 @@
 import React from 'react';
-import { ScrollView, StyleSheet,AsyncStorage } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { Container, Content, Form, Item, Input,Textarea,Text , Button} from 'native-base';
 
-import  { setItem } from '../services/storage.service';
-
-export default class LinksScreen extends React.Component {
+export default class LoginScreen extends React.Component {
   static navigationOptions = {
-    title: 'Create Notice',
+    title:"Login"
   };
 
   constructor(props){
     super(props);
     this.state = {
-      title:null,
-      description:null
+      username:null,
+      password:null
     }
   }
   handleChange(name, value) {
     this.setState(() => ({ [name]: value  }));
   }
   onSubmit = async () => {
-    
+    this.props.navigation.navigate('Home')
   }
   render() {
     return (
@@ -29,10 +27,10 @@ export default class LinksScreen extends React.Component {
           <Content padder>
             <Form>
               <Item style={styles.item}>
-                <Input name="title" onChangeText={(value)=> this.handleChange('title',value)} placeholder="Title" />
+                <Input  onChangeText={(value)=> this.handleChange('username',value)} placeholder="Username" />
               </Item>
               <Item style={styles.item}>
-                <Textarea rowSpan={10} onChangeText={(value)=> this.handleChange('description',value)} placeholder="Description"/>
+              <Input  onChangeText={(value)=> this.handleChange('password',value)} placeholder="Password" />
               </Item>
                 <Button onPress={this.onSubmit.bind(this)} style={styles.button} block rounded primary>
                   <Text> 
